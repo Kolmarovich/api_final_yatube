@@ -35,6 +35,7 @@ class Post(models.Model):
 
     class Meta:
         default_related_name = 'posts'
+        ordering = ["pub_date"]
 
     def __str__(self):
         return self.text[:TRUNCATE_LENGTH]
@@ -79,5 +80,12 @@ class Follow(models.Model):
             models.UniqueConstraint(
                 fields=['user', 'following'],
                 name='unique_user_following'
-            )
+            ),
+            models.CheckConstraint(
+                name="prevent_self_follow",
+                check=~models.Q(user=models.F("following")),
+            ),
         ]
+
+    def __str__(self):
+        return (f'Пользователь {self.user} подписан на {self.following}')
