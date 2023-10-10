@@ -6,7 +6,12 @@
 
 Yatube - это учебный проект курса "backend-python" от Яндекс-Практикума.
 
-Автор: Вадим Волковский
+Автор: Берников Николай
+
+### Технологии:
+- Python 3.9
+- djangorestframework 3.12.4
+- djoser 2.1.0
 
 ### Как запустить проект:
 
@@ -57,6 +62,17 @@ python3 manage.py runserver
 Получить список всех постов (GET):
 ```
 http://127.0.0.1:8000/api/v1/posts/
+```
+Пример ответа:
+```
+{
+"count": 123,
+"next": "http://api.example.org/accounts/?offset=400&limit=100",
+"previous": "http://api.example.org/accounts/?offset=200&limit=100",
+"results": [
+{}
+]
+}
 ```
 
 Получить определенный пост (GET):
